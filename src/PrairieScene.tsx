@@ -2,9 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
 
+const compactHeroQuery = "(max-width: 700px), (max-width: 1100px) and (orientation: portrait), (max-width: 950px) and (max-height: 600px)";
+
 export function PrairieScene() {
   const hostRef = useRef<HTMLDivElement>(null);
   const [reducedMotion, setReducedMotion] = useState(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const [compactHero, setCompactHero] = useState(() => window.matchMedia(compactHeroQuery).matches);
   const [webglFailed, setWebglFailed] = useState(false);
 
   useEffect(() => {
@@ -15,8 +18,16 @@ export function PrairieScene() {
   }, []);
 
   useEffect(() => {
+    const media = window.matchMedia(compactHeroQuery);
+    const updateLayout = () => setCompactHero(media.matches);
+    updateLayout();
+    media.addEventListener("change", updateLayout);
+    return () => media.removeEventListener("change", updateLayout);
+  }, []);
+
+  useEffect(() => {
     const host = hostRef.current;
-    if (!host || webglFailed) return;
+    if (!host || compactHero || webglFailed) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
@@ -249,7 +260,9 @@ export function PrairieScene() {
       renderer.dispose();
       renderer.domElement.remove();
     };
-  }, [reducedMotion, webglFailed]);
+  }, [compactHero, reducedMotion, webglFailed]);
+
+  if (compactHero) return null;
 
   if (webglFailed) {
     return (
