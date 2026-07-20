@@ -82,26 +82,6 @@ export function App() {
 
     const responsiveMotion = gsap.matchMedia();
     const context = gsap.context(() => {
-      if (!prefersReducedMotion) {
-        const heroTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "+=25%",
-            pin: true,
-            scrub: 1.1,
-            anticipatePin: 1,
-          },
-        });
-
-        heroTimeline
-          .to(".hero-image", { scale: 1.16, yPercent: 8, ease: "none" }, 0)
-          .to(".hero-content", { y: -70, opacity: 0.18, ease: "none" }, 0)
-          .to(".prairie-scene", { y: 55, scale: 0.92, ease: "none" }, 0)
-          .to(".hero-hills-back", { xPercent: -5, ease: "none" }, 0)
-          .to(".hero-hills-front", { xPercent: 7, ease: "none" }, 0);
-      }
-
       responsiveMotion.add("(min-width: 701px)", () => {
         const horizontalSections = Array.from(root.querySelectorAll<HTMLElement>("[data-horizontal]"));
 

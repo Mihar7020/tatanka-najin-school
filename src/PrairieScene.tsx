@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
 
-const compactHeroQuery = "(max-width: 700px), (max-width: 1100px) and (orientation: portrait), (max-width: 950px) and (max-height: 600px)";
+const compactHeroQuery = "(max-width: 700px), (max-width: 950px) and (max-height: 600px)";
 
 export function PrairieScene() {
   const hostRef = useRef<HTMLDivElement>(null);
