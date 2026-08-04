@@ -140,29 +140,30 @@ h1 em,h2 em{font-family:var(--serif);font-weight:500;text-transform:none;color:v
 .text-link svg{width:1rem;transition:transform .25s}
 .text-link:hover svg{transform:translateX(5px)}
 
-.stack-section{position:relative;height:calc(100svh + var(--stack-distance,3400px));min-height:calc(760px + var(--stack-distance,3400px));color:#fff;overflow:clip}
-.stack-pin{position:sticky;top:0;min-height:720px;height:100svh;display:grid;align-items:center;padding-block:clamp(5rem,8vh,6.5rem);overflow:hidden}
+.stack-section{position:relative;color:#fff;overflow:clip;padding-block:clamp(5.5rem,8vw,8rem)}
+.stack-pin{position:relative;min-height:0;height:auto;display:block;overflow:visible}
 .learning-supports{background:radial-gradient(circle at 15% 0,rgba(63,145,140,.24),transparent 35%),linear-gradient(120deg,var(--deep),#10352b)}
 .stack-section:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.25;background-image:linear-gradient(135deg,transparent 0 48%,rgba(226,170,56,.18) 48.2% 48.6%,transparent 48.8%)}
-.stack-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(300px,.78fr) minmax(430px,1fr);gap:clamp(3rem,7vw,7rem);align-items:center}
-.stack-heading{max-width:560px}
+.stack-layout{position:relative;z-index:2;display:grid;grid-template-columns:minmax(300px,.74fr) minmax(430px,1fr);gap:clamp(2.75rem,6vw,6rem);align-items:start}
+.stack-heading{position:sticky;top:clamp(6rem,12vh,8rem);max-width:560px}
 .stack-heading .section-label{margin:0 0 1.3rem}
 .stack-heading h2{font-size:clamp(3.25rem,5.4vw,5.7rem);line-height:.9}
 .stack-heading h2 strong{font-weight:600}
 .stack-heading>p{max-width:410px;margin:1.25rem 0 0;color:rgba(255,255,255,.66);font-size:.92rem}
-.card-stack-stage{position:relative;height:clamp(500px,60vh,660px);perspective:1400px;isolation:isolate;overflow:visible}
-.path-panel{position:absolute;inset:0;width:min(100%,620px);max-height:none;display:grid;grid-template-rows:auto minmax(0,1fr);background:rgba(243,234,216,.99);color:var(--ink);border-bottom:4px solid var(--gold);box-shadow:0 28px 80px rgba(0,0,0,.32);overflow:hidden;transform-origin:50% 50%;will-change:transform}
-.path-panel-media{width:100%;aspect-ratio:677/422;overflow:hidden;background:var(--forest)}
+.card-stack-stage{position:relative;display:grid;gap:clamp(1.05rem,2.5vh,1.6rem);perspective:1400px;isolation:isolate;overflow:visible;align-content:start}
+.path-panel{position:sticky;top:calc(clamp(5.6rem,11vh,7.5rem) + var(--stack-offset,0px));z-index:calc(10 + var(--stack-index,0));width:min(100%,620px);display:grid;grid-template-rows:auto minmax(0,1fr);background:rgba(243,234,216,.99);color:var(--ink);border-bottom:4px solid var(--gold);box-shadow:0 24px 70px rgba(0,0,0,.3);overflow:hidden;transform-origin:50% 0;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.path-panel-media{width:100%;aspect-ratio:677/330;overflow:hidden;background:var(--forest)}
 .path-panel-media img{transition:transform .8s var(--ease);filter:saturate(.88) contrast(1.03)}
-.path-panel:hover .path-panel-media img{transform:scale(1.035)}
-.path-panel-copy{min-height:190px;padding:1.2rem 1.35rem}
+.path-panel:hover{transform:translateY(-4px);box-shadow:0 30px 80px rgba(0,0,0,.34)}
+.path-panel:hover .path-panel-media img{transform:scale(1.025)}
+.path-panel-copy{min-height:0;padding:1rem 1.2rem}
 .path-panel-top{display:flex;align-items:center;justify-content:space-between;color:var(--red);font-family:var(--display);font-size:1.15rem}
 .path-panel-top svg{width:1.45rem;height:1.45rem;stroke-width:1.5}
-.path-panel-copy h3{margin:.55rem 0 .35rem;font-family:var(--display);font-size:1.9rem;line-height:.92;text-transform:uppercase}
-.path-panel-copy>p{margin:0;color:#52655f;font-size:.82rem}
-.panel-details{margin-top:.75rem;border-top:1px solid var(--line)}
-.panel-details summary{padding:.65rem 0;color:var(--red)}
-.panel-details>p{max-height:7.25rem;margin:0;padding:0 .25rem .65rem 0;overflow-y:auto;color:#52655f;font-size:.82rem;line-height:1.45;overscroll-behavior:contain}
+.path-panel-copy h3{margin:.42rem 0 .28rem;font-family:var(--display);font-size:clamp(1.65rem,2.1vw,1.9rem);line-height:.92;text-transform:uppercase}
+.path-panel-copy>p{margin:0;color:#52655f;font-size:.8rem;line-height:1.42}
+.panel-details{margin-top:.55rem;border-top:1px solid var(--line)}
+.panel-details summary{padding:.52rem 0;color:var(--red)}
+.panel-details>p{max-height:6rem;margin:0;padding:0 .25rem .55rem 0;overflow-y:auto;color:#52655f;font-size:.8rem;line-height:1.42;overscroll-behavior:contain}
 
 
 .library-section{padding-bottom:clamp(1.5rem,2vw,2.25rem);background:linear-gradient(120deg,#e8eee8 0 52%,var(--cream) 52%);overflow:hidden}
@@ -243,9 +244,23 @@ footer small{color:rgba(255,255,255,.45);white-space:nowrap}
   .principal-copy,.library-copy,.extra-copy{max-width:720px}
   .library-grid,.extracurricular-grid{gap:4rem}
   .library-images,.extra-gallery{justify-self:stretch}
-  .stack-layout{grid-template-columns:minmax(260px,.7fr) minmax(360px,1fr);gap:2.5rem}
-  .stack-heading h2{font-size:3rem}
-  .path-panel{width:100%}
+  .stack-section{padding-block:5.25rem}
+  .stack-layout{grid-template-columns:minmax(230px,.62fr) minmax(360px,1fr);gap:2rem;align-items:start}
+  .stack-heading{top:5.75rem}
+  .stack-heading .section-label{margin-bottom:.9rem}
+  .stack-heading h2{font-size:2.75rem}
+  .stack-heading>p{font-size:.82rem}
+  .card-stack-stage{gap:1rem}
+  .path-panel{top:calc(5.45rem + var(--stack-offset,0px));width:100%}
+  .path-panel-media{aspect-ratio:677/300}
+  .path-panel-copy{padding:.82rem 1rem}
+  .path-panel-top{font-size:1rem}
+  .path-panel-top svg{width:1.2rem;height:1.2rem}
+  .path-panel-copy h3{font-size:1.5rem}
+  .path-panel-copy>p{font-size:.74rem;line-height:1.35}
+  .panel-details{margin-top:.45rem}
+  .panel-details summary{padding:.4rem 0;font-size:.64rem}
+  .panel-details>p{max-height:4.5rem;font-size:.74rem;line-height:1.36}
   .activities-drawer-inner{grid-template-columns:1fr;align-content:start;padding-top:5.5rem}
   .drawer-intro{max-width:720px}
   .footer-inner{grid-template-columns:1fr 1fr}
@@ -287,15 +302,16 @@ footer small{color:rgba(255,255,255,.45);white-space:nowrap}
   .fact-row div:nth-child(3){border-left:0;border-top:1px solid var(--line)}
   .fact-row div:nth-child(4){border-top:1px solid var(--line)}
   .principal-copy blockquote{font-size:2.35rem}
-  .stack-section{height:auto;min-height:0;overflow:visible}
-  .stack-pin{position:relative;top:auto;height:auto;min-height:0;display:block;padding-block:4.75rem;overflow:visible}
+  .stack-section{height:auto;min-height:0;overflow:visible;padding-block:4.75rem}
+  .stack-pin{position:relative;top:auto;height:auto;min-height:0;display:block;padding-block:0;overflow:visible}
   .stack-layout{display:block}
-  .stack-heading{max-width:100%;margin-bottom:1.5rem}
+  .stack-heading{position:relative;top:auto;max-width:100%;margin-bottom:1.5rem}
   .stack-heading .section-label{margin:0 0 .25rem}
   .stack-heading h2{font-size:clamp(2.35rem,10vw,3.25rem);line-height:.95;white-space:normal}
   .stack-heading>p{max-width:19rem;font-size:.72rem}
   .card-stack-stage{height:auto;display:grid;gap:1rem;perspective:none}
   .path-panel{position:relative;inset:auto;width:100%;height:auto;transform:none!important;opacity:1!important;box-shadow:0 18px 42px rgba(0,0,0,.2);will-change:auto;pointer-events:auto!important}
+  .path-panel-media{aspect-ratio:677/300}
   .path-panel-copy,.path-panel-media{opacity:1!important;transform:none!important}
   .path-panel-copy{min-height:0;padding:1rem}
   .path-panel-copy h3{font-size:1.7rem}
@@ -343,9 +359,9 @@ footer small{color:rgba(255,255,255,.45);white-space:nowrap}
   [data-reveal],[data-stagger]>*{opacity:1!important;transform:none!important}
   .hero-image{transform:scale(1.06)!important}
   .stack-section{height:auto;min-height:0;overflow:visible}
-  .stack-pin{position:relative;top:auto;height:auto;min-height:0;display:block;padding-block:4.75rem;overflow:visible}
+  .stack-pin{position:relative;top:auto;height:auto;min-height:0;display:block;padding-block:0;overflow:visible}
   .stack-layout{display:block}
-  .stack-heading{max-width:100%;margin-bottom:1.5rem}
+  .stack-heading{position:relative;top:auto;max-width:100%;margin-bottom:1.5rem}
   .card-stack-stage{height:auto;display:grid;gap:1rem;perspective:none}
   .path-panel{position:relative;inset:auto;width:100%;height:auto;transform:none!important;opacity:1!important;will-change:auto;pointer-events:auto!important}
   .path-panel-copy,.path-panel-media{opacity:1!important;transform:none!important}

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { ArrowDown, ArrowRight, BookOpen, Bus, ChevronDown, HeartHandshake, Languages, Leaf, Library, MapPin, Menu, Phone, Sparkles, Utensils, X } from "lucide-react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -82,62 +82,6 @@ export function App() {
 
     const responsiveMotion = gsap.matchMedia();
     const context = gsap.context(() => {
-      responsiveMotion.add("(min-width: 701px)", () => {
-        if (prefersReducedMotion) return;
-
-        const stackSections = Array.from(root.querySelectorAll<HTMLElement>("[data-card-stack]"));
-
-        stackSections.forEach((section) => {
-          const cards = Array.from(section.querySelectorAll<HTMLElement>(".path-panel"));
-          if (cards.length < 2) return;
-
-          const updateStack = (progress: number) => {
-            const active = Math.min(progress / 0.86, 1) * (cards.length - 1);
-            cards.forEach((card, index) => {
-              const offset = index - active;
-              const stacked = Math.min(Math.max(-offset, 0), 4);
-              const incoming = Math.max(offset, 0);
-              const isActive = Math.abs(offset) < 0.55;
-              const stageHeight = card.parentElement?.getBoundingClientRect().height || 560;
-              gsap.set(card, {
-                zIndex: index + 1,
-                x: 0,
-                y: incoming > 0 ? incoming * (stageHeight + 32) : -stacked * 18,
-                scale: 1 - stacked * 0.038,
-                rotate: 0,
-                opacity: 1,
-                pointerEvents: isActive ? "auto" : "none",
-              });
-              gsap.set(card.querySelector(".path-panel-copy"), {
-                opacity: 1,
-                y: 0,
-              });
-              gsap.set(card.querySelector(".path-panel-media"), {
-                opacity: 1,
-              });
-            });
-          };
-
-          const distance = () => Math.max(window.innerHeight * (cards.length - 1) * 0.78, 2600);
-          const syncSectionHeight = () => {
-            section.style.setProperty("--stack-distance", `${distance()}px`);
-          };
-
-          syncSectionHeight();
-          updateStack(0);
-          ScrollTrigger.create({
-            trigger: section,
-            start: "top top",
-            end: () => `+=${distance()}`,
-            scrub: 0.92,
-            invalidateOnRefresh: true,
-            onRefreshInit: syncSectionHeight,
-            onUpdate: (self) => updateStack(self.progress),
-            onRefresh: (self) => updateStack(self.progress),
-          });
-        });
-      });
-
       if (!prefersReducedMotion) {
         gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
           gsap.fromTo(element, { y: 46, opacity: 0 }, {
@@ -292,8 +236,8 @@ export function App() {
                 <p>Scroll to follow learning, care, and practical support through the school day.</p>
               </div>
               <div className="card-stack-stage" aria-label="Learning and student support cards">
-                {learningAndSupports.map(({ number, icon: Icon, title, summary, body, image }) => (
-                  <article className="path-panel cut-corner" key={title}>
+                {learningAndSupports.map(({ number, icon: Icon, title, summary, body, image }, index) => (
+                  <article className="path-panel cut-corner" key={title} style={{ "--stack-index": index, "--stack-offset": `${index * 10}px` } as CSSProperties}>
                     <div className="path-panel-media"><img src={image} alt={`${title} at Tatanka Najin School`} loading="lazy" decoding="async" /></div>
                     <div className="path-panel-copy">
                       <div className="path-panel-top"><span>{number}</span><Icon aria-hidden="true" /></div>
