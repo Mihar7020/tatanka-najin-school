@@ -114,7 +114,7 @@ export function PrairieScene() {
               depth: 1.28,
               bevelEnabled: true,
               bevelSegments: 1,
-              bevelSize: 0.1,
+              bevelSize: 0.5,
               bevelThickness: 0.1,
               curveSegments: 16,
             });
