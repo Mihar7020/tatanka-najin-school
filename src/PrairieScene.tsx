@@ -68,7 +68,7 @@ export function PrairieScene() {
       clearcoat: 0.7,
       clearcoatRoughness: 0.18,
     });
-    const sideMaterial = new THREE.MeshStandardMaterial({ color: 0xd7ddda, roughness: 0.5, metalness: 0.06 });
+    const sideMaterial = new THREE.MeshStandardMaterial({ color: 0xcfd6d3, roughness: 0.48, metalness: 0.08 });
 
     scene.add(new THREE.HemisphereLight(0xffffff, 0x13382e, 2.7));
     const keyLight = new THREE.DirectionalLight(0xffffff, 4.6);
@@ -111,11 +111,11 @@ export function PrairieScene() {
         data.paths.forEach((path) => {
           SVGLoader.createShapes(path).forEach((shape) => {
             const geometry = new THREE.ExtrudeGeometry(shape, {
-              depth: 0.86,
+              depth: 1.08,
               bevelEnabled: true,
               bevelSegments: 1,
-              bevelSize: 0.08,
-              bevelThickness: 0.08,
+              bevelSize: 0.09,
+              bevelThickness: 0.09,
               curveSegments: 16,
             });
             geometries.push(geometry);
