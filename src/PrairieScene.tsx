@@ -111,11 +111,11 @@ export function PrairieScene() {
         data.paths.forEach((path) => {
           SVGLoader.createShapes(path).forEach((shape) => {
             const geometry = new THREE.ExtrudeGeometry(shape, {
-              depth: 1.08,
+              depth: 1.28,
               bevelEnabled: true,
               bevelSegments: 1,
-              bevelSize: 0.09,
-              bevelThickness: 0.09,
+              bevelSize: 0.1,
+              bevelThickness: 0.1,
               curveSegments: 16,
             });
             geometries.push(geometry);
