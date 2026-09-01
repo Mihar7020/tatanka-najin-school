@@ -115,7 +115,7 @@ export function PrairieScene() {
               bevelEnabled: true,
               bevelSegments: 1,
               bevelSize: 0.5,
-              bevelThickness: 0.1,
+              bevelThickness: 1,
               curveSegments: 16,
             });
             geometries.push(geometry);
