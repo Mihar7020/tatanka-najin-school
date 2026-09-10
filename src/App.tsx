@@ -264,9 +264,6 @@ export function App() {
                         <span className="support-card-cue" aria-hidden="true"><ArrowRight /></span>
                       </span>
                       <span className="support-card-face support-card-back">
-                        <span className="support-card-top"><span>{number}</span><Icon aria-hidden="true" /></span>
-                        <span className="support-card-title">{title}</span>
-                        <span className="support-card-summary">{summary}</span>
                         <span className="support-card-body">{body}</span>
                       </span>
                     </span>
