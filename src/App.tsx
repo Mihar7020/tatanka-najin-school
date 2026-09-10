@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, BookOpen, Bus, ChevronDown, HeartHandshake, Languages, Leaf, Library, MapPin, Menu, Phone, Sparkles, Utensils, X } from "lucide-react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -30,6 +30,7 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activitiesOpen, setActivitiesOpen] = useState(false);
+  const [flippedSupportCards, setFlippedSupportCards] = useState<Set<string>>(() => new Set());
   const shellRef = useRef<HTMLDivElement>(null);
   const activitiesTriggerRef = useRef<HTMLButtonElement>(null);
   const activitiesCloseRef = useRef<HTMLButtonElement>(null);
@@ -137,6 +138,14 @@ export function App() {
     setActivitiesOpen(false);
     window.setTimeout(() => activitiesTriggerRef.current?.focus(), 0);
   };
+  const toggleSupportCard = (title: string) => {
+    setFlippedSupportCards((current) => {
+      const next = new Set(current);
+      if (next.has(title)) next.delete(title);
+      else next.add(title);
+      return next;
+    });
+  };
 
   return (
     <div className="site-shell" ref={shellRef}>
@@ -227,28 +236,44 @@ export function App() {
           </div>
         </section>
 
-        <section className="stack-section learning-supports" id="learning-supports" data-card-stack aria-label="Learning and student supports">
-          <div className="stack-pin">
-            <div className="container stack-layout">
-              <div className="stack-heading">
-                <div className="section-label light"><span aria-hidden="true" /> Learning &amp; student supports</div>
-                <h2><strong>One school day,</strong> <em>many ways of knowing.</em></h2>
-                <p>Scroll to follow learning, care, and practical support through the school day.</p>
-              </div>
-              <div className="card-stack-stage" aria-label="Learning and student support cards">
-                {learningAndSupports.map(({ number, icon: Icon, title, summary, body, image }, index) => (
-                  <article className="path-panel cut-corner" key={title} style={{ "--stack-index": index, "--stack-offset": `${index * 10}px` } as CSSProperties}>
-                    <div className="path-panel-media"><img src={image} alt={`${title} at Tatanka Najin School`} loading="lazy" decoding="async" /></div>
-                    <div className="path-panel-copy">
-                      <div className="path-panel-top"><span>{number}</span><Icon aria-hidden="true" /></div>
-                      <h3>{title}</h3>
-                      <p>{summary}</p>
-                      <details className="panel-details"><summary>Read more <ChevronDown aria-hidden="true" /></summary><p>{body}</p></details>
-                    </div>
-                  </article>
-                ))}
-              </div>
+        <section className="stack-section learning-supports" id="learning-supports" aria-label="Learning and student supports">
+          <div className="container stack-layout">
+            <div className="stack-heading" data-reveal>
+              <div className="section-label light"><span aria-hidden="true" /> Learning &amp; student supports</div>
+              <h2><strong>One school day,</strong> <em>many ways of knowing.</em></h2>
+              <p>Explore the programs and supports that shape learning, wellness, culture, and belonging through the school day.</p>
             </div>
+            <div className="support-card-grid" aria-label="Learning and student support cards" data-stagger>
+              {learningAndSupports.map(({ number, icon: Icon, title, summary, body, image }) => {
+                const isFlipped = flippedSupportCards.has(title);
+                return (
+                  <button
+                    className={isFlipped ? "support-card cut-corner is-flipped" : "support-card cut-corner"}
+                    key={title}
+                    type="button"
+                    aria-pressed={isFlipped}
+                    aria-label={`${title}. ${isFlipped ? "Hide details" : "Show details"}`}
+                    onClick={() => toggleSupportCard(title)}
+                  >
+                    <span className="support-card-inner">
+                      <span className="support-card-face support-card-front">
+                        <img src={image} alt="" loading="lazy" decoding="async" />
+                        <span className="support-card-wash" aria-hidden="true" />
+                        <span className="support-card-top"><span>{number}</span><Icon aria-hidden="true" /></span>
+                        <span className="support-card-title">{title}</span>
+                        <span className="support-card-cue" aria-hidden="true"><ArrowRight /></span>
+                      </span>
+                      <span className="support-card-face support-card-back">
+                        <span className="support-card-top"><span>{number}</span><Icon aria-hidden="true" /></span>
+                        <span className="support-card-title">{title}</span>
+                        <span className="support-card-summary">{summary}</span>
+                        <span className="support-card-body">{body}</span>
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+              </div>
           </div>
         </section>
 
