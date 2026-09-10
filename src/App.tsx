@@ -248,7 +248,7 @@ export function App() {
                 const isFlipped = flippedSupportCards.has(title);
                 return (
                   <button
-                    className={isFlipped ? "support-card cut-corner is-flipped" : "support-card cut-corner"}
+                    className={isFlipped ? "support-card is-flipped" : "support-card"}
                     key={title}
                     type="button"
                     aria-pressed={isFlipped}
