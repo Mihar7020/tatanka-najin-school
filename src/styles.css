@@ -157,17 +157,17 @@ h1 em,h2 em{font-family:var(--serif);font-weight:500;text-transform:none;color:v
 .support-card:hover .support-card-inner,.support-card:focus-visible .support-card-inner{filter:drop-shadow(0 22px 35px rgba(0,0,0,.3))}
 .support-card-face{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 42px rgba(0,0,0,.23)}
 .support-card-front{background:var(--forest)}
-.support-card-front img{position:absolute;inset:0;z-index:-2;filter:saturate(.86) contrast(1.04);transform:scale(1.08);transition:transform 1s var(--ease)}
+.support-card-front img{position:absolute;inset:0;z-index:0;filter:saturate(.86) contrast(1.04);transform:scale(1.08);transition:transform 1s var(--ease)}
 .support-card:hover .support-card-front img,.support-card:focus-visible .support-card-front img{transform:scale(1.16) translate3d(0,-2%,0)}
-.support-card-wash{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,31,26,.08),rgba(7,31,26,.36) 42%,rgba(7,31,26,.9)),linear-gradient(135deg,rgba(226,170,56,.18),transparent 34%)}
+.support-card-wash{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,31,26,.08),rgba(7,31,26,.36) 42%,rgba(7,31,26,.9)),linear-gradient(135deg,rgba(226,170,56,.18),transparent 34%)}
 .support-card-back{gap:.45rem;justify-content:flex-start;padding:1.05rem;background:linear-gradient(140deg,var(--cream),#fbf5e8 58%,#dcece8);color:var(--ink);border:1px solid rgba(16,43,35,.14);border-bottom:4px solid var(--gold);transform:rotateY(180deg)}
 .support-card-back:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(135deg,transparent 0 48%,rgba(166,53,60,.25) 48.2% 48.6%,transparent 48.8%)}
-.support-card-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:1rem;color:var(--gold);font-family:var(--display);font-size:1.08rem;font-weight:600;text-transform:uppercase;line-height:1}
+.support-card-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:1rem;color:var(--gold);font-family:var(--display);font-size:1.08rem;font-weight:600;text-transform:uppercase;line-height:1}
 .support-card-back .support-card-top{padding:0;color:var(--red)}
 .support-card-top svg{width:1.28rem;height:1.28rem;stroke-width:1.65}
-.support-card-title{position:relative;z-index:1;display:block;padding:0 1rem 1rem;font-family:var(--display);font-size:clamp(1.65rem,2.2vw,2.25rem);font-weight:600;line-height:.9;text-transform:uppercase;color:#fff}
+.support-card-title{position:relative;z-index:2;display:block;padding:0 1rem 1rem;font-family:var(--display);font-size:clamp(1.65rem,2.2vw,2.25rem);font-weight:600;line-height:.9;text-transform:uppercase;color:#fff}
 .support-card-back .support-card-title{padding:0;color:var(--ink)}
-.support-card-summary,.support-card-body{position:relative;z-index:1;display:block}
+.support-card-summary,.support-card-body{position:relative;z-index:2;display:block}
 .support-card-summary{color:var(--red);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1.35}
 .support-card-body{margin-top:.28rem;color:#52655f;font-size:.8rem;line-height:1.38}
 .support-card-cue{position:absolute;z-index:2;right:.7rem;top:.7rem;width:2.15rem;height:2.15rem;display:grid;place-items:center;background:rgba(226,170,56,.92);color:var(--deep);transition:transform .32s var(--ease)}
@@ -362,9 +362,6 @@ footer small{color:rgba(255,255,255,.45);white-space:nowrap}
   .stack-pin{position:relative;top:auto;height:auto;min-height:0;display:block;padding-block:0;overflow:visible}
   .stack-layout{display:block}
   .stack-heading{position:relative;top:auto;max-width:100%;margin-bottom:1.5rem}
-  .card-stack-stage{height:auto;display:grid;gap:1rem;perspective:none}
-  .path-panel{position:relative;inset:auto;width:100%;height:auto;transform:none!important;opacity:1!important;will-change:auto;pointer-events:auto!important}
-  .path-panel-copy,.path-panel-media{opacity:1!important;transform:none!important}
   .support-card-grid{perspective:none}
   .support-card-inner{transition:none!important}
   .support-card:hover .support-card-inner,.support-card:focus-visible .support-card-inner,.support-card.is-flipped .support-card-inner{transform:none!important;filter:none!important}
